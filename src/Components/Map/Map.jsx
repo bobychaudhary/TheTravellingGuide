@@ -1,34 +1,26 @@
-import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react';
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-class Map extends Component{
-    static defaultProps={
-        center:{
-            lat: 59.95,
-            lng: 30.33
-        },
-        zoom: 11
-    };
-    render(){
-        return (
-          <div style={{ height: "100vh", width: "100%" }}>
-            <GoogleMapReact
-              bootstrapURLKeys={{
-                key: process.env.REACT_APP_THETRAVELLINGGUIDE,
-              }}
-              defaultCenter={this.props.center}
-              defaultZoom={this.props.zoom}
-            >
-              <AnyReactComponent
-                lat={59.955413}
-                lng={30.337844}
-                text="Humari Website"
-              />
-            </GoogleMapReact>
-          </div>
-        );}
-    }
-
-
-export default Map
+import React from "react";
+import googleMapReact from "google-map-react";
+import useStyles from "./styles";
+import { useMediaQuery } from "@material-ui/core";
+const Map = () => {
+  const classes = useStyles();
+  const isSmallDevice = useMediaQuery("(min-width:600px)");
+  const coordinates = { lat: 0, lng: 0 };
+  return (
+    <div className={classes.map}>
+      <googleMapReact
+        bootstrapURLKeys={{
+          key: "AIzaSyBG5af8qMPv6sKOtuOwtU_RGxesHRosDWs",
+        }}
+        defaultCenter={coordinates}
+        center={coordinates}
+        defaultZoom={14}
+        margin={(50, 50, 50, 50)}
+        options={""}
+        onChange={""}
+        onChildClick={""} //when we will click on any restaurant or hotel
+      ></googleMapReact>
+    </div>
+  );
+};
+export default Map;
