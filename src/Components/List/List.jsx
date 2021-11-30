@@ -4,15 +4,28 @@ import {
   MenuItem,
   Select,
   Typography,
+  Grid,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import useStyles from "./styles";
+import PlaceDetails from "../PlaceDetails/PlaceDetails";
 
 
 const List = () => {
   const classes = useStyles();
   const [type, setType] = useState("restaurants");
   const [rating, setRating] = useState("");
+
+  const places = [{ name: "Anything you like" }, 
+  { name: "Anything you like" },
+    { name: "Anything you like"},
+    { name: "Anything  like"},
+    { name: "Anything you "},
+    { name: " you like"},
+    { name: "Anything  like"},
+    { name: "Anything  like"},
+    { name: "Anything you like"},
+];
   return (
     <div className={classes.container}>
       <Typography variant="h4">
@@ -36,6 +49,14 @@ const List = () => {
           <MenuItem value={5.5}>Above 4.5</MenuItem>
         </Select>
       </FormControl>
+      <Grid container spacing={3} className={classes.list}>
+        {places.map((place,i) =>(
+          <Grid item key={i} xs={12}>
+            <PlaceDetails place={place}/>
+                  </Grid>
+
+        ))}
+      </Grid>
     </div>
   );
 };
