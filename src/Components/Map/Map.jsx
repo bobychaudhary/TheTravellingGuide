@@ -10,7 +10,7 @@ const Map = () => {
     <div className={classes.map}>
       <googleMapReact
         bootstrapURLKeys={{
-          key: "AIzaSyBG5af8qMPv6sKOtuOwtU_RGxesHRosDWs",
+          key: process.env.REACT_APP_THETRAVELLINGGUIDE,
         }}
         defaultCenter={coordinates}
         center={coordinates}
