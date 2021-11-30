@@ -4,7 +4,7 @@ import List from './Components/List/List';
 import Header from "./Components/Header/Header";
 import Map from "./Components/Map/Map";
 
-
+import Api from './Components/Api';
 
 function App() {
   return (
@@ -17,6 +17,8 @@ function App() {
         </Grid>
         <Grid item xs={12} md={8}>
           <Map />
+          {/* <Api/> */}
+
         </Grid>
       </Grid>
     </>
