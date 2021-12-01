@@ -8,7 +8,7 @@ const Map = (setCoordinates, setBounds, coordinates) => {
 
   return (
     <div className={classes.mapContainer}>
-      <googleMapReact
+      <GoogleMapReact
         bootstrapURLKeys={{
           key: process.env.REACT_APP_THETRAVELLINGGUIDE,
         }}
@@ -22,7 +22,7 @@ const Map = (setCoordinates, setBounds, coordinates) => {
           setBounds=({ne:e.marginBounds.ne, sw:e.marginBounds.sw});
         }} //when anything will change on the map
         onChildClick={""} //when we will click on any restaurant or hotel
-      ></googleMapReact>
+      ></GoogleMapReact>
     </div>
   );
 };
