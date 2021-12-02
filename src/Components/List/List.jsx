@@ -6,15 +6,23 @@ import {
   Typography,
   Grid,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import useStyles from "./styles";
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
 
 
-const List = ({places}) => {
+const List = ({ places, rating, setRating, type, setType, childClicked }) => {
+  const [elRefs, setElRefs] = useState([]);
+
   const classes = useStyles();
-  const [type, setType] = useState("restaurants");
-  const [rating, setRating] = useState("");
+
+  useEffect(() => {
+    setElRefs((refs) =>
+      Array(places.length)
+        .fill()
+        .map((_, i) => refs[i] || createRef())
+    );
+  }, [places]);
 
   return (
     <div className={classes.container}>
@@ -41,8 +49,12 @@ const List = ({places}) => {
       </FormControl>
       <Grid container spacing={3} className={classes.list}>
         {places?.map((place, i) => (
-          <Grid item key={i} xs={12}>
-            <PlaceDetails place={place} />
+          <Grid ref={elRefs[i]} key={i} item xs={12}>
+            <PlaceDetails
+              selected={Number(childClicked) === i}
+              refProp={elRefs[i]}
+              place={place}
+            />
           </Grid>
         ))}
       </Grid>

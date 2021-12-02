@@ -3,26 +3,27 @@ import './App.css';
 import List from './Components/List/List';
 import Header from "./Components/Header/Header";
 import Map from "./Components/Map/Map";
-import  getPlaceData  from './API/api';
+import  getPlacesData  from './API/api';
 
 import Api from './Components/Api';
 import { useEffect, useState } from 'react';
 import PlaceDetails from './Components/PlaceDetails/PlaceDetails';
 
 function App() {
-  const [place, setPlace] = useState([]);
+  const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({lat: 0, lng: 0});
-  const [bounds, setBounds] = useState(null);
+  const [bounds, setBounds] = useState({});
   useEffect(()=>{
     navigator.geolocation.getCurrentPosition(({coords: {latitude, longitude}})=>{
       setCoordinates({lat: latitude, lng: longitude});
     })
   },[])
   useEffect(()=>{
-    getPlaceData(bounds.sw, bounds.ne).then(data=>{
+    getPlacesData(bounds.sw, bounds.ne).then((data=>{
       console.log(data);
-      setPlace(data);
-    })
+      setPlaces(data);
+    }))
+  
   },[coordinates, bounds]);
   return (
     <>
@@ -39,7 +40,7 @@ function App() {
             coordinates={coordinates}
           />
           {/* passing props*/}
-          {/* <Api/> */}
+        
         </Grid>
       </Grid>
     </>
