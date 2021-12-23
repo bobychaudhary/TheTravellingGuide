@@ -14,6 +14,7 @@ import PlaceDetails from "../PlaceDetails/PlaceDetails";
 const List = ({ places, rating, setRating, type, setType, childClicked }) => {
   const [elRefs, setElRefs] = useState([]);
 
+  const dummy = [{name: "dcbbhwbhb"}];
   const classes = useStyles();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const List = ({ places, rating, setRating, type, setType, childClicked }) => {
     );
   }, [places]);
 
+  console.log(places);
   return (
     <div className={classes.container}>
       <Typography variant="h4">
@@ -48,7 +50,7 @@ const List = ({ places, rating, setRating, type, setType, childClicked }) => {
         </Select>
       </FormControl>
       <Grid container spacing={3} className={classes.list}>
-        {places?.map((place, i) => (
+        {places?.map((place, i) =>( 
           <Grid ref={elRefs[i]} key={i} item xs={12}>
             <PlaceDetails
               selected={Number(childClicked) === i}
